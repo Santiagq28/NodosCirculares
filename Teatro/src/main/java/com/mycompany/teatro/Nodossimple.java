@@ -69,14 +69,14 @@ public class Nodossimple {
     /**
      * @return the siguiente
      */
-    public Nodoscirculares getSiguiente() {
+    public Nodossimple getSiguiente() {
         return siguiente;
     }
 
     /**
      * @param siguiente the siguiente to set
      */
-    public void setSiguiente(Nodoscirculares siguiente) {
+    public void setSiguiente(Nodossimple siguiente) {
         this.siguiente = siguiente;
     }
     
@@ -86,7 +86,7 @@ public class Nodossimple {
     private String genero;    
     private int nboletas;
     
-    private Nodoscirculares siguiente;
+    private Nodossimple siguiente;
     
     
 }

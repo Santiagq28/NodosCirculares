@@ -36,11 +36,14 @@ public class Menu extends javax.swing.JFrame {
         consultarLista = new javax.swing.JButton();
         listaBoletas = new javax.swing.JButton();
         consultarDocumento = new javax.swing.JButton();
+        porcentajeGeneros = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 18)); // NOI18N
         jLabel1.setText("Venta boletas");
 
+        numero.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         numero.setText("Numero de boletas");
         numero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -56,6 +59,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        solicitar.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         solicitar.setText("Solcitar turno");
         solicitar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -63,6 +67,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        consultarLista.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         consultarLista.setText("Consultar lista");
         consultarLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,50 +91,59 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        porcentajeGeneros.setText("Porcentajes");
+        porcentajeGeneros.setEnabled(false);
+        porcentajeGeneros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                porcentajeGenerosActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(186, 186, 186)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(204, 204, 204))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(numero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(atender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(solicitar)
-                            .addComponent(consultarLista))
-                        .addGap(70, 70, 70))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(consultarDocumento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(listaBoletas, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(solicitar)
+                    .addComponent(consultarLista)
+                    .addComponent(numero))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(consultarDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(atender, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(listaBoletas)
+                    .addComponent(porcentajeGeneros))
+                .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(22, 22, 22)
                 .addComponent(jLabel1)
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(numero)
-                    .addComponent(solicitar))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(atender)
-                    .addComponent(consultarLista))
-                .addGap(45, 45, 45)
-                .addComponent(listaBoletas)
-                .addGap(35, 35, 35)
-                .addComponent(consultarDocumento)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addComponent(numero)
+                        .addGap(18, 18, 18)
+                        .addComponent(solicitar)
+                        .addGap(18, 18, 18)
+                        .addComponent(consultarLista))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(atender)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(listaBoletas)
+                        .addGap(18, 18, 18)
+                        .addComponent(consultarDocumento)
+                        .addGap(13, 13, 13)
+                        .addComponent(porcentajeGeneros)))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         pack();
@@ -138,7 +152,7 @@ public class Menu extends javax.swing.JFrame {
     private void solicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarActionPerformed
 
 
-    objlista.solicitarTurno(JOptionPane.showInputDialog(" Nombre "), JOptionPane.showInputDialog(" Documento "), JOptionPane.showInputDialog(" Genero "));
+    objlista.solicitarTurno(JOptionPane.showInputDialog(" Nombre "), JOptionPane.showInputDialog(" Documento "), JOptionPane.showInputDialog(" Genero Masculino(M) o Femenino(F)"));
         
     atender.setEnabled(true);
         
@@ -157,6 +171,7 @@ public class Menu extends javax.swing.JFrame {
       
        numeroboletas= Integer.parseInt(JOptionPane.showInputDialog(" Diga el numero de boletas a vender "));
        objlista.numBoletas(numeroboletas);
+       numero.setEnabled(false);
         
         
     }//GEN-LAST:event_numeroActionPerformed
@@ -170,6 +185,7 @@ public class Menu extends javax.swing.JFrame {
         
         listaBoletas.setEnabled(true);
         consultarDocumento.setEnabled(true);
+        porcentajeGeneros.setEnabled(true);
         
     }//GEN-LAST:event_atenderActionPerformed
 
@@ -178,8 +194,13 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_listaBoletasActionPerformed
 
     private void consultarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarDocumentoActionPerformed
-        int documento= Integer.parseInt(JOptionPane.showInputDialog(" Diga el numero de documento "));
+        String documento= (JOptionPane.showInputDialog(" Diga el numero de documento "));
+        objlista.consultarPorDocumento(documento);
     }//GEN-LAST:event_consultarDocumentoActionPerformed
+
+    private void porcentajeGenerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_porcentajeGenerosActionPerformed
+        objlista.mostrarGeneros();
+    }//GEN-LAST:event_porcentajeGenerosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,6 +244,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton listaBoletas;
     private javax.swing.JButton numero;
+    private javax.swing.JButton porcentajeGeneros;
     private javax.swing.JButton solicitar;
     // End of variables declaration//GEN-END:variables
 }

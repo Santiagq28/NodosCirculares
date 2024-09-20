@@ -13,12 +13,12 @@ import javax.swing.JOptionPane;
 public class Teatro {
     
     Nodoscirculares inicio;
-    NodoBoleta inicioBoletas;
+    Nodossimple inicioSimple;
     
     
     Teatro(){
     inicio=null;    
-    inicioBoletas = null;
+    inicioSimple = null;
     }
     int[] boletas = {0};
     
@@ -36,9 +36,8 @@ public class Teatro {
         nuevo.setSiguiente(nuevo);
         
         if(inicio==null){
-            JOptionPane.showMessageDialog(null, "La lista esta vacia");   
-            
-               inicio=nuevo;
+            JOptionPane.showMessageDialog(null, "¡Bienvenido, eres el primero en llegar!");   
+            inicio=nuevo;
         
         }else {
             Nodoscirculares temporal = inicio;
@@ -61,8 +60,9 @@ public class Teatro {
     else{
         
         do{       
-              JOptionPane.showMessageDialog(null, "Documento "+
-                      temporal.getDocumento()+" Nombre " + temporal.getNombre() +" Genero "+ temporal.getGenero()
+              JOptionPane.showMessageDialog(null, "Documento "+temporal.getDocumento()+"\n"+
+                      " Nombre " + temporal.getNombre() +"\n"+
+                      " Genero "+ temporal.getGenero()
                      );
               
               temporal=temporal.getSiguiente();       
@@ -71,14 +71,9 @@ public class Teatro {
     
     
     
-    }
-
-
-    
+        }
         
-        
-        
-        }   
+    }   
     
     
     public void atender(int nboletas) {
@@ -110,21 +105,25 @@ public class Teatro {
             temporal.setSiguiente(inicio.getSiguiente());
             inicio = inicio.getSiguiente();
         }
-
-        NodoBoleta nuevaBoleta = new NodoBoleta(atendido.getDocumento(), nboletas);
         
-        if (inicioBoletas == null) {
-            inicioBoletas = nuevaBoleta;
+        Nodossimple nuevo = new Nodossimple();
+        nuevo.setDocumento(atendido.getDocumento());
+        nuevo.setNombre(atendido.getNombre());
+        nuevo.setNboletas(nboletas);
+        nuevo.setGenero(atendido.getGenero());
+
+        if (inicioSimple == null) {
+            inicioSimple = nuevo;
         } else {
-            NodoBoleta tempBoleta = inicioBoletas;
+            Nodossimple tempBoleta = inicioSimple;
             while (tempBoleta.getSiguiente() != null) {
                 tempBoleta = tempBoleta.getSiguiente();
             }
-            tempBoleta.setSiguiente(nuevaBoleta);
+            tempBoleta.setSiguiente(nuevo);
         }
 
-        JOptionPane.showMessageDialog(null, "Atendido: " + atendido.getNombre() +
-                                            " Documento: " + atendido.getDocumento() + 
+        JOptionPane.showMessageDialog(null, "Atendido: " + atendido.getNombre() + "\n"+
+                                            " Documento: " + atendido.getDocumento() + "\n"+
                                             " Compró: " + nboletas + " boletas.");
     }
     
@@ -133,19 +132,58 @@ public class Teatro {
     
     
     public void imprimirBoletasVendidas() {
-        NodoBoleta tempBoleta = inicioBoletas;
+        Nodossimple tempBoleta = inicioSimple;
         if (tempBoleta == null) {
             JOptionPane.showMessageDialog(null, "No se han vendido boletas.");
         } else {
             while (tempBoleta != null) {
-                JOptionPane.showMessageDialog(null, "Documento: " + tempBoleta.getDocumentoComprador() +
-                                                    " Boletas: " + tempBoleta.getCantidadBoletas());
+                JOptionPane.showMessageDialog(null, "Documento: " + tempBoleta.getDocumento() +
+                                                    " Boletas: " + tempBoleta.getNboletas());
                 tempBoleta = tempBoleta.getSiguiente();
             }
         }
     }
     
     
+    
+    public void consultarPorDocumento(String n){
+        Nodossimple tempBoleta = inicioSimple;
+        if (tempBoleta == null) {
+            JOptionPane.showMessageDialog(null, "No se han vendido boletas.");
+        } else {
+            while (tempBoleta != null) {
+                if(tempBoleta.getDocumento().equals(n)){
+                    JOptionPane.showMessageDialog(null, "La persona con el documento No."+tempBoleta.getDocumento()+" ha comprado "+tempBoleta.getNboletas()+" boletas.");
+                }
+                tempBoleta = tempBoleta.getSiguiente();
+            }
+        }
+    }
+    
+    
+    public void mostrarGeneros(){
+        Nodossimple tempBoleta = inicioSimple;
+        int hombres = 0;
+        int mujeres = 0;
+        int total = 0;
+        if (tempBoleta == null) {
+            JOptionPane.showMessageDialog(null, "No se han vendido boletas.");
+        } else {
+            while (tempBoleta != null) {
+                if(tempBoleta.getGenero().equals("M")){
+                    hombres+=tempBoleta.getNboletas();
+                }else if(tempBoleta.getGenero().equals("F")){
+                    mujeres+=tempBoleta.getNboletas();
+                }else{
+                    JOptionPane.showMessageDialog(null, "Los generos deben ser 'Masculino'(M) o 'Femenino'(F)");
+                }
+                total += tempBoleta.getNboletas();
+                tempBoleta = tempBoleta.getSiguiente();
+                
+            }
+            JOptionPane.showMessageDialog(null, " -Boletas compradas por hombres: "+((hombres*100)/total)+"%"+"\n"+" -Boletas compradas por mujeres: "+((mujeres*100)/total)+"%");
+        }
+    }
         
     
     
