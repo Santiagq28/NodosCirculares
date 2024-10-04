@@ -128,13 +128,30 @@ public class TareaNodosCirculares {
         }
         else if(temporal.getSiguiente()==null){
             if(temporal.getAge()<18){
-                        anterior = temporal.getAnterior();
-                        siguiente = temporal.getSiguiente();
-                        anterior.setSiguiente(siguiente);
-                        siguiente.setAnterior(anterior);
-                        JOptionPane.showMessageDialog(null,"Menor de edad borrado");
+                inicio=null;
+                JOptionPane.showMessageDialog(null,"Menor de edad borrado");
             }
             JOptionPane.showMessageDialog(null,"Sólo hay un elemento en la vista");
+        }else if(temporal.getSiguiente().getSiguiente()==inicio){
+            do{ 
+                
+                if(temporal.getSiguiente()==null){
+                    if(temporal.getAge()<18){
+                        inicio=null;
+                    JOptionPane.showMessageDialog(null,"Menor de edad borrado");
+                    }
+                }
+                else if(temporal.getAge()<18){
+                        temporal.getSiguiente().setSiguiente(null);
+                        temporal.getSiguiente().setAnterior(null);
+                        JOptionPane.showMessageDialog(null,"Menor de edad borrado");
+                        temporal=temporal.getSiguiente();
+                        inicio=temporal;
+                }
+                
+            }while(temporal!=null);
+            
+            
         }else{
             do{
                     if(temporal.getAge()<18){
