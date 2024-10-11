@@ -33,6 +33,7 @@ public class View extends javax.swing.JFrame {
         showBeforeAfter = new javax.swing.JButton();
         mostAge = new javax.swing.JButton();
         deleteMenores = new javax.swing.JButton();
+        eliminarPosicion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,13 @@ public class View extends javax.swing.JFrame {
             }
         });
 
+        eliminarPosicion.setText("Eliminar Posición");
+        eliminarPosicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarPosicionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,12 +91,14 @@ public class View extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(mostAge)
-                        .addGap(18, 18, 18)
-                        .addComponent(deleteMenores))
+                        .addComponent(mostAge))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(54, 54, 54)
                         .addComponent(showBeforeAfter)))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(eliminarPosicion)
+                    .addComponent(deleteMenores))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,7 +112,8 @@ public class View extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(showList)
-                    .addComponent(showBeforeAfter))
+                    .addComponent(showBeforeAfter)
+                    .addComponent(eliminarPosicion))
                 .addGap(128, 128, 128))
         );
 
@@ -132,6 +143,10 @@ public class View extends javax.swing.JFrame {
     private void deleteMenoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteMenoresActionPerformed
         tarea.eliminarMenores();
     }//GEN-LAST:event_deleteMenoresActionPerformed
+
+    private void eliminarPosicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarPosicionActionPerformed
+        tarea.eliminarPosicion(Integer.parseInt(JOptionPane.showInputDialog("Ingrese la posición:")));
+    }//GEN-LAST:event_eliminarPosicionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,6 +186,7 @@ public class View extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addPerson;
     private javax.swing.JButton deleteMenores;
+    private javax.swing.JButton eliminarPosicion;
     private javax.swing.JButton mostAge;
     private javax.swing.JButton showBeforeAfter;
     private javax.swing.JButton showList;

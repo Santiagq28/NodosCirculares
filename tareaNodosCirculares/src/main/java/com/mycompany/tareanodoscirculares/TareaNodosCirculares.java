@@ -28,22 +28,15 @@ public class TareaNodosCirculares {
         if(inicio==null){
             inicio=nuevo;
             JOptionPane.showMessageDialog(null,"Lista creada");
-        }else if(inicio.getSiguiente()==null){
-            inicio.setAnterior(nuevo);
-            inicio.setSiguiente(nuevo);
-            nuevo.setAnterior(inicio);
-            nuevo.setSiguiente(inicio);
-            JOptionPane.showMessageDialog(null,"Persona agregada al final");
         }
         else{
             
-            while(temporal.getSiguiente()!=inicio){
+            while(temporal.getSiguiente()!=null){
                 temporal=temporal.getSiguiente();
             }
-            inicio.setAnterior(nuevo);
             temporal.setSiguiente(nuevo);
             nuevo.setAnterior(temporal);
-            nuevo.setSiguiente(inicio);
+            nuevo.setSiguiente(null);
             JOptionPane.showMessageDialog(null,"Persona agregada al final");
         }
     }
@@ -61,7 +54,7 @@ public class TareaNodosCirculares {
         }else{
             lista += "Nombre: "+temporal.getName()+", edad:"+temporal.getAge()+"\n";
             temporal=temporal.getSiguiente();
-            while(temporal!=inicio){
+            while(temporal!=null){
                 lista += "Nombre: "+temporal.getName()+", edad:"+temporal.getAge()+"\n";
                 temporal=temporal.getSiguiente();
             }
@@ -77,18 +70,26 @@ public class TareaNodosCirculares {
         if(inicio == null){
             JOptionPane.showMessageDialog(null,"Lista vacía");
             return;
-        }
-        else if(temporal.getSiguiente()==null){
-            JOptionPane.showMessageDialog(null,"Sólo hay un elemento en la vista");
         }else{
             do{
                     if(pos==posicion){
-                        lista +="Persona atrás: Nombre: "+temporal.getAnterior().getName()+", edad:"+temporal.getAnterior().getAge()+"\n";
-                        lista +="Persona siguiente: Nombre: "+temporal.getSiguiente().getName()+", edad:"+temporal.getSiguiente().getAge()+"\n";
+                        if(temporal.getAnterior()==null && temporal.getSiguiente()==null){
+                            lista += "Solo hay una persona en la lista";
+                        }else if(temporal.getAnterior()==null && temporal.getSiguiente()!=null){
+                            lista +="Persona anterior: No hay \n";
+                            lista +="Persona siguiente: Nombre: "+temporal.getSiguiente().getName()+", edad:"+temporal.getSiguiente().getAge()+"\n";
+                        }else if(temporal.getAnterior()!=null && temporal.getSiguiente()==null){
+                            lista +="Persona atrás: Nombre: "+temporal.getAnterior().getName()+", edad:"+temporal.getAnterior().getAge()+"\n";
+                            lista +="Persona siguiente: No hay \n";
+                        }else if(temporal.getAnterior()!=null && temporal.getSiguiente()!=null){
+                            lista +="Persona atrás: Nombre: "+temporal.getAnterior().getName()+", edad:"+temporal.getAnterior().getAge()+"\n";
+                            lista +="Persona siguiente: Nombre: "+temporal.getSiguiente().getName()+", edad:"+temporal.getSiguiente().getAge()+"\n";
+                        }
+                        
                     }
                     temporal=temporal.getSiguiente();
                     pos++;
-            }while(temporal!=inicio);
+            }while(temporal!=null);
         }
         JOptionPane.showMessageDialog(null,lista);
     }
@@ -101,9 +102,6 @@ public class TareaNodosCirculares {
         if(inicio == null){
             JOptionPane.showMessageDialog(null,"Lista vacía");
             return;
-        }
-        else if(temporal.getSiguiente()==null){
-            JOptionPane.showMessageDialog(null,"Sólo hay un elemento en la vista");
         }else{
             do{
                     if(temporal.getAge()>=18){
@@ -111,60 +109,73 @@ public class TareaNodosCirculares {
                     }
                     temporal=temporal.getSiguiente();
                     pos++;
-            }while(temporal!=inicio);
+            }while(temporal!=null);
         }
         JOptionPane.showMessageDialog(null,lista);
     }
     
     public void eliminarMenores(){
-        int pos = 1;
         NodoCircular temporal = inicio;
-        String lista = "";
         NodoCircular anterior;
         NodoCircular siguiente;
         if(inicio == null){
             JOptionPane.showMessageDialog(null,"Lista vacía");
-            return;
-        }
-        else if(temporal.getSiguiente()==null){
-            if(temporal.getAge()<18){
-                inicio=null;
-                JOptionPane.showMessageDialog(null,"Menor de edad borrado");
-            }
-            JOptionPane.showMessageDialog(null,"Sólo hay un elemento en la vista");
-        }else if(temporal.getSiguiente().getSiguiente()==inicio){
-            do{ 
-                
-                if(temporal.getSiguiente()==null){
-                    if(temporal.getAge()<18){
-                        inicio=null;
-                    JOptionPane.showMessageDialog(null,"Menor de edad borrado");
-                    }
-                }
-                else if(temporal.getAge()<18){
-                        temporal.getSiguiente().setSiguiente(null);
-                        temporal.getSiguiente().setAnterior(null);
-                        JOptionPane.showMessageDialog(null,"Menor de edad borrado");
-                        temporal=temporal.getSiguiente();
-                        inicio=temporal;
-                }
-                
-            }while(temporal!=null);
-            
-            
         }else{
             do{
                     if(temporal.getAge()<18){
                         anterior = temporal.getAnterior();
                         siguiente = temporal.getSiguiente();
-                        anterior.setSiguiente(siguiente);
-                        siguiente.setAnterior(anterior);
-                        
+                        if(temporal.getAnterior()==null && temporal.getSiguiente()==null){
+                            inicio=null;
+                        }else if(temporal.getAnterior()==null && temporal.getSiguiente()!=null){
+                            siguiente.setAnterior(null);
+                            inicio=siguiente;
+                            
+                        }else if(temporal.getAnterior()!=null && temporal.getSiguiente()==null){
+                            anterior.setSiguiente(null);
+                        }else if(temporal.getAnterior()!=null && temporal.getSiguiente()!=null){
+                            anterior.setSiguiente(siguiente);
+                            siguiente.setAnterior(anterior);
+                        }
                         
                     }
                     temporal=temporal.getSiguiente();
-            }while(temporal!=inicio);
+            }while(temporal!=null);
             JOptionPane.showMessageDialog(null,"Menor de edad borrado");
+        }
+    }
+    
+    public void eliminarPosicion(int pos2){
+        int pos = 1;
+        NodoCircular temporal = inicio;
+        NodoCircular anterior;
+        NodoCircular siguiente;
+        if(inicio == null){
+            JOptionPane.showMessageDialog(null,"Lista vacía");
+        }else{
+            do{
+                    if(pos==pos2){
+                        
+                        anterior = temporal.getAnterior();
+                        siguiente = temporal.getSiguiente();
+                        if(temporal.getAnterior()==null && temporal.getSiguiente()==null){
+                            inicio=null;
+                        }else if(temporal.getAnterior()==null && temporal.getSiguiente()!=null){
+                            siguiente.setAnterior(null);
+                            inicio=siguiente;
+                        }else if(temporal.getAnterior()!=null && temporal.getSiguiente()==null){
+                            anterior.setSiguiente(null);
+                        }else if(temporal.getAnterior()!=null && temporal.getSiguiente()!=null){
+                            anterior.setSiguiente(siguiente);
+                            siguiente.setAnterior(anterior);
+                        }
+                        JOptionPane.showMessageDialog(null,"Posición "+pos2+" eliminada.");
+                        return;
+                    }
+                    pos++;
+                    temporal=temporal.getSiguiente();
+            }while(temporal!=null);
+            JOptionPane.showMessageDialog(null,"La posición no existe");
         }
     }
 }
